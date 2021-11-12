@@ -24,7 +24,7 @@ AWS profile
 ### How to run the application with Docker
 On your terminal, 
 1. Navigate to the root direcory of the project.
-2. Run '''docker build . -t deploy_flask''' to build a new image from the source code.
+2. Run ```docker build . -t deploy_flask``` to build a new image from the source code.
 3. Run '''docker run -p 5000:5000 -t -i deploy_flask:latest''' to create the container and run it.
 4. The application will be available and running on http://localhost:5000/
 
