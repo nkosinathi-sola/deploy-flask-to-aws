@@ -1,0 +1,7 @@
+app/*.pyc
+app/Include/*
+app/Lib*
+terraform/.terraform/*
+terraform/terraform.tfstate*
+.vscode
+pyvenv.cfg
