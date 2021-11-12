@@ -6,7 +6,7 @@ resource "random_string" "flask-secret-key" {
 }
 
 # create the ECS cluster
-resource "aws_ecs_cluster" "fp-ecs-cluster" {
+resource "aws_ecs_cluster" "fa-ecs-cluster" {
   name = "flask-app"
 
   tags = {
@@ -15,7 +15,7 @@ resource "aws_ecs_cluster" "fp-ecs-cluster" {
 }
 
 # create and define the container task
-resource "aws_ecs_task_definition" "fp-ecs-task" {
+resource "aws_ecs_task_definition" "fa-ecs-task" {
   family = "flask-app"
   requires_compatibilities = ["FARGATE"]
   network_mode = "awsvpc"
@@ -63,8 +63,8 @@ DEFINITION
 
 resource "aws_ecs_service" "flask-service" {
   name = "flask-app-service"
-  cluster = aws_ecs_cluster.fp-ecs-cluster.id
-  task_definition = aws_ecs_task_definition.fp-ecs-task.arn
+  cluster = aws_ecs_cluster.fa-ecs-cluster.id
+  task_definition = aws_ecs_task_definition.fa-ecs-task.arn
   desired_count = 2
   launch_type = "FARGATE"
 
