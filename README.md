@@ -37,10 +37,10 @@ Sets up the following AWS infrastructure:
     - Service
 
 ## Prerequisites
-Install Docker
-Install Terraform
-Sign up for an AWS account
-Set up AWS CLI profile
+- Install Docker
+- Install Terraform
+- Sign up for an AWS account
+- Set up AWS CLI profile
 
 ## How to run the application with Docker
 On your terminal, 
