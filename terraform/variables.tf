@@ -46,5 +46,5 @@ variable "flask_app" {
 
 variable "app_home" {
   description = "APP HOME variable"
-  default = "flask-app/src/"
+  default = "flask-app/app/"
 }
