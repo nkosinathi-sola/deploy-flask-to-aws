@@ -18,7 +18,8 @@
 ├── Dockerfile
 ├── DEADME.md
 ├── docker-compose.yml
-├── entrypoint.sh            
+├── entrypoint.sh
+└── vars.env            
 ```
 
 ## Deploy a simple Flask app to AWS ECS with Terraform
