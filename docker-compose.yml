@@ -1,0 +1,44 @@
+# https://docs.docker.com/compose/yml/
+# Each service defined in docker-compose.yml must specify exactly one of
+# image or build. Other keys are optional, and are analogous to their
+# docker run command-line counterparts.
+#
+# As with docker run, options specified in the Dockerfile (e.g., CMD,
+# EXPOSE, VOLUME, ENV) are respected by default - you don't need to
+# specify them again in docker-compose.yml.
+#
+version: '3.5'
+
+services:
+  # Path to a directory containing a Dockerfile. When the value supplied
+  # is a relative path, it is interpreted as relative to the location of
+  # the yml file itself. This directory is also the build context that is
+  # sent to the Docker daemon.
+  # 
+  # Compose will build and tag it with a generated name, and use that image
+  # thereafter.
+
+  flask:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: flask-app
+    # env_file: .env
+    env_file:
+      - vars.env
+    # Expose ports. Either specify both ports (HOST:CONTAINER), or just the
+    # container port (a random host port will be chosen).
+    #
+    # Note: When mapping ports in the HOST:CONTAINER format, you may experience
+    # erroneous results when using a container port lower than 60, because YAML
+    # will parse numbers in the format xx:yy as sexagesimal (base 60). For this
+    # reason, we recommend always explicitly specifying your port mappings as
+    # strings.  
+    ports:
+      - "8080:8080"
+    # Mount paths as volumes, optionally specifying a path on the host machine
+    # (HOST:CONTAINER), or an access mode (HOST:CONTAINER:ro).  
+    volumes:
+      - "./app/:/app/app/"
+    # Override the default command.  
+    command: ["/bin/bash", "-c", "entrypoint.sh"]
