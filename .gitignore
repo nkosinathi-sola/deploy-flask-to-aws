@@ -5,3 +5,4 @@ terraform/.terraform/*
 terraform/terraform.tfstate*
 .vscode
 pyvenv.cfg
+vars.env
