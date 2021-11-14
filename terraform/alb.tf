@@ -1,3 +1,11 @@
+/*
+terraform/alb.tf contains all the necessary resources to
+setup the Application Load Balancer for the ECS application
+Resources:
+- Application Load Balancer
+- Security Groups
+*/
+
 # create a security group to access the ECS application
 resource "aws_security_group" "fa-alb-sg" {
   name = "fa-app-alb"

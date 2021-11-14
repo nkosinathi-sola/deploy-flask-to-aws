@@ -1,3 +1,14 @@
+/*
+terraform/network.tf contains all the necessary resources to
+setup the basis for our ECS application and AWS environment
+Resources:
+- Virtual Private Cloud
+- Internet Gateway
+- Route Table
+- Public & Private Subnets
+- Security Groups
+*/
+
 # availability zones in the region
 data "aws_availability_zones" "azs" {}
 
