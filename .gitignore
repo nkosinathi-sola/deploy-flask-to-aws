@@ -3,6 +3,7 @@ app/Include/*
 app/Lib*
 terraform/.terraform/*
 terraform/terraform.tfstate*
+.terraform.lock.hcl
 .vscode
 pyvenv.cfg
 vars.env
