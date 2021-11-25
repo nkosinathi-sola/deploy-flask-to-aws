@@ -10,7 +10,7 @@ variable "rt_wide_route" {
 
 variable "public_cidrs" {
   description = "Public Subnet CIDR Blocks"
-  default = [
+  default     = [
     "10.0.1.0/24",
     "10.0.2.0/24"
   ]
@@ -18,7 +18,7 @@ variable "public_cidrs" {
 
 variable "private_cidrs" {
   description = "Public Subnet CIDR Blocks"
-  default = [
+  default     = [
     "10.0.3.0/24",
     "10.0.4.0/24"
   ]
@@ -26,25 +26,25 @@ variable "private_cidrs" {
 
 variable "flask_app_image" {
   description = "Docker image for flask-app"
-  default = "deploy_flask:latest"
+  default     = "deploy_flask:latest"
 }
 
 variable "flask_app_port" {
   description = "Port exposed by the flask application"
-  default = 8080
+  default     = 8080
 }
 
 variable "flask_env" {
   description = "FLASK ENV variable"
-  default = "production"
+  default     = "production"
 }
 
 variable "flask_app" {
   description = "FLASK APP variable"
-  default = "app"
+  default     = "app"
 }
 
 variable "app_home" {
   description = "APP HOME variable"
-  default = "flask-app/app/"
+  default     = "flask-app/app/"
 }
