@@ -34,7 +34,7 @@ resource "aws_internet_gateway" "fa-igw" {
 
 # create a Route Table for the VPC
 resource "aws_route_table" "fa-rt-public" {
-  vpc_id = aws_vpc.fa-vpc.id
+  vpc_id       = aws_vpc.fa-vpc.id
 
   route {
     cidr_block = var.rt_wide_route
@@ -49,7 +49,7 @@ resource "aws_route_table" "fa-rt-public" {
 # create a Default Route Table for the VPC
 # (good practice -- anything not associated with the above
 # RT will fall back into this one, so it's not just exposed)
-resource "aws_default_route_table" "flask-postgres-private-default" {
+resource "aws_default_route_table" "flask-app-private-default" {
   default_route_table_id = aws_vpc.fa-vpc.default_route_table_id
 
   tags = {
@@ -59,11 +59,11 @@ resource "aws_default_route_table" "flask-postgres-private-default" {
 
 # create <count> number of public subnets in each availability zone
 resource "aws_subnet" "fa-public-subnets" {
-  count = 2
-  cidr_block = var.public_cidrs[count.index]
-  vpc_id = aws_vpc.fa-vpc.id
+  count                   = 2
+  cidr_block              = var.public_cidrs[count.index]
+  vpc_id                  = aws_vpc.fa-vpc.id
   map_public_ip_on_launch = true
-  availability_zone = data.aws_availability_zones.azs.names[count.index]
+  availability_zone       = data.aws_availability_zones.azs.names[count.index]
 
   tags = {
     Name = "flask-app-tf-public-${count.index + 1}"
@@ -84,22 +84,22 @@ resource "aws_subnet" "fa-private-subnets" {
 
 
 # associate the public subnets with the public route table
-resource "aws_route_table_association" "fp-public-rt-assc" {
-  count = 2
+resource "aws_route_table_association" "fa-public-rt-assc" {
+  count          = 2
   route_table_id = aws_route_table.fa-rt-public.id
-  subnet_id = aws_subnet.fa-public-subnets.*.id[count.index]
+  subnet_id      = aws_subnet.fa-public-subnets.*.id[count.index]
 }
 
 # associate the private subnets with the public route table
-resource "aws_route_table_association" "fp-private-rt-assc" {
-  count = 2
+resource "aws_route_table_association" "fa-private-rt-assc" {
+  count          = 2
   route_table_id = aws_route_table.fa-rt-public.id
-  subnet_id = aws_subnet.fa-private-subnets.*.id[count.index]
+  subnet_id      = aws_subnet.fa-private-subnets.*.id[count.index]
 }
 
 # create security group
 resource "aws_security_group" "fa-public-sg" {
-  name = "fa-public-group"
+  name        = "fa-public-group"
   description = "access to public instances"
-  vpc_id = aws_vpc.fa-vpc.id
+  vpc_id      = aws_vpc.fa-vpc.id
 }
